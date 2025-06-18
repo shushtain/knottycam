@@ -6,7 +6,7 @@ This camera filter is inspired by the Infinite Loop game where you would turn se
 
 ## Example
 
-![Example](example.mp4)
+![Example](https://github.com/shushtain/knottycam/blob/main/example.mp4)
 
 ---
 
