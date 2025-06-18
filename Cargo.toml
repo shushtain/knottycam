@@ -1,0 +1,10 @@
+[package]
+name = "knottycam"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+embedded-graphics = "0.8.1"
+minifb = "0.28.0"
+rayon = "1.10.0"
+v4l = "0.14.0"
