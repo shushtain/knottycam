@@ -6,6 +6,7 @@ use embedded_graphics::{
 use minifb::{Key, Window, WindowOptions};
 use rayon::prelude::*;
 use std::error::Error;
+use std::thread::sleep;
 use std::time::{Duration, Instant};
 use v4l::buffer::Type;
 use v4l::io::mmap::Stream;
@@ -16,6 +17,7 @@ use v4l::{Device, Format, FourCC};
 const CAMERA_RESOLUTION_X: usize = 160;
 const CAMERA_RESOLUTION_Y: usize = 120;
 const CELL_COUNT: usize = 1080 / 18;
+
 const CELL_SIZE: usize = 18;
 const PIXELS_IN_CELL: usize = CAMERA_RESOLUTION_Y / CELL_COUNT;
 const OUTPUT_RESOLUTION: usize = CELL_COUNT * CELL_SIZE;
@@ -322,7 +324,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         let elapsed_time = now.duration_since(last_frame_time);
 
         if elapsed_time < target_frame_duration {
-            continue;
+            let sleep_duration = target_frame_duration - elapsed_time;
+            sleep(sleep_duration);
         }
         last_frame_time = Instant::now();
         frame_parity = (frame_parity + 1) % 2;
